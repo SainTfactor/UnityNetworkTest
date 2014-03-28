@@ -263,5 +263,57 @@ function processHostList()
 */
 
 
+// Alternate process host list.  This is how you display all the games currently registered
+// on the master server, and allow your end user to connect.  Didn't need it here, but I 
+// thought it would be best to include it for posterity.
+/*
+
+
+//processes them hosts brah!
+void processHostList()
+{	
+//Generates the hostlist
+HostData[] data  = MasterServer.PollHostList();
+
+GUIStyle firstStyle = new GUIStyle();
+firstStyle.padding = new RectOffset(20, 0, 40, 0);
+
+GUIStyle otherStyle = new GUIStyle();
+otherStyle.padding = new RectOffset(20, 0, 0, 0);
+
+bool firstLoop = true;
+foreach (HostData element in data)
+{	
+	if(firstLoop) {
+		GUILayout.BeginHorizontal( firstStyle );
+		firstLoop = false;
+	}
+	else {
+		GUILayout.BeginHorizontal( otherStyle );
+	}	
+	string name = element.gameName + " " + element.connectedPlayers + " / " + element.playerLimit;
+	GUILayout.Label(name);	
+	GUILayout.Space(5);
+	string hostInfo;
+	hostInfo = "[";
+	foreach (string host in element.ip)
+		hostInfo = hostInfo + host + ":" + element.port + " ";
+	hostInfo = hostInfo + "]";
+	GUILayout.Label(hostInfo);	
+	GUILayout.Space(5);
+	GUILayout.Label(element.comment);
+	GUILayout.Space(5);
+	GUILayout.FlexibleSpace();
+	if (GUILayout.Button("Connect"))
+	{
+		// Connect to HostData struct, internally the correct method is used (GUID when using NAT).
+		Network.Connect(element);			
+	}
+	GUILayout.EndHorizontal();	
+}
+}
+
+*/
+
 
 
